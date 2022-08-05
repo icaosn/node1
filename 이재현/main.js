@@ -1,15 +1,23 @@
-var a = 10
-let b = 20
-const c = 30
-
-console.log(`a = ${a}, b =%{b}, c = ${c}`)
-
-for (var i = 0; i < 10; i+=2){
-    console.log(i)
+var http = require('http')
+var fs = require('fs')
+var app = http.createServer(function(request , response){
+    var template =
+`
+<html>
+<head>
+    <title>이재현</title>
+</head>
+<body>
+    <h1>노드js</h1>
+    <p>첫번쨰 강의</p>
+</body>
+</html>
+`
+if(http.request.url == "/"){
+    url = '/index.html'
 }
+    response.writeHead(200, {'Content-Type' : 'text/html; charset=utf-8'});
+    response.end(fs.readFileSync(__dirname+'./index.html'))
+})
 
-var i = 0
-while(i<10){
-    console.log(i)
-    i += 1
-}
+app.listen(300)
